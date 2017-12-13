@@ -1,4 +1,4 @@
-module Task1 where
+module Adt where
 
 data Genre = Comedy | Thriller | Action
 

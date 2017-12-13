@@ -1,2 +1,3 @@
-# haskell-holomyov
-решения задач из книжки антона холомьева про хаскл
+# book
+To run all tests: 
+`runhaskell -isrc -itest test/Spec.hs`
