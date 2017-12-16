@@ -24,3 +24,5 @@ beside a b = (Succ $ min a b) == max a b
 beside2 :: Nat -> Nat -> Bool
 beside2 a b = (Succ $ Succ $ min a b) == max a b
 
+sumNat :: Nat -> Nat -> Nat
+sumNat a b = max a b + min a b
