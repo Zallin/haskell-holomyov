@@ -9,6 +9,7 @@ main = hspec spec
 one = Succ Zero
 two = Succ one
 three = Succ two
+four = Succ three
 
 spec :: Spec
 spec = do
@@ -43,3 +44,13 @@ spec = do
       sumNat one two `shouldBe` three
     it "sums when the second arg is bigger" $
       sumNat two one `shouldBe` three
+  describe "pow test" $ do
+    -- it is unclear what to do with zero ^ zero
+    it "pows zero to non zero" $
+      pow Zero one `shouldBe` Zero
+    it "pows one to zero" $
+      pow one Zero `shouldBe` one
+    it "pows two to zero" $
+      pow two Zero `shouldBe` one
+    it "pows two to two" $
+      pow two two `shouldBe` four
