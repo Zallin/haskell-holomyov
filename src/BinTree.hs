@@ -10,3 +10,7 @@ reverseTree (Tree l r) = Tree (reverseTree r) (reverseTree l)
 depth :: BinTree a -> Int
 depth (Leave a) = 1
 depth (Tree l r) = 1 + max (depth l) (depth r)
+
+leaves :: BinTree a -> [a]
+leaves (Leave a) = [a]
+leaves (Tree l r) = concat [(leaves l), (leaves r)]
