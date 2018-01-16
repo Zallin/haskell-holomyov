@@ -8,30 +8,28 @@ main = hspec spec
 
 spec :: Spec
 spec = do
-  describe "head test" $ do
-    it "works on nats stream" $
+  describe "stream operations test" $ do
+    it "extracts head" $
       shead (nats 1) `shouldBe` 1
-  describe "tail test" $ do
-    it "works on nats stream" $
+    it "extracts tail" $
       shead (stail (nats 1)) `shouldBe` 2
-  describe "n-th test" $ do
-    it "works on nats stream" $
+    it "takes nth element" $
       sn 3 (nats 1) `shouldBe` 4
-  describe "take test" $ do
-    it "works on nats stream" $
+    it "takes n elements as a list" $
       stake 3 (nats 1) `shouldBe` [1, 2, 3]
-  describe "map test" $ do
-    it "returns powers stream on nats" $
+    it "maps over a stream" $
       sn 3 (smap (\x -> x *x) (nats 1)) `shouldBe` 16
-  describe "filter test" $ do
-    it "filters odd values" $ do
+    it "filters over a stream" $ do
       sn 3 (sfilter even (nats 1)) `shouldBe` 8
-  describe "zip test" $ do
-    it "zips nats streams" $
+    it "zips streams" $
       sn 3 (szip (nats 1) (nats 2)) `shouldBe` (4, 5)
-  describe "zip with test" $ do
-    it "sums nats streams" $
+    it "zips streams with function" $
       sn 3 (szipWith (+) (nats 1) (nats 2)) `shouldBe` 9
-  describe "iterate test" $ do
-    it "produces powers stream" $
+    it "iterates over value and returns stream" $
       sn 3 (siterate (* 2) 1) `shouldBe` 8
+    it "sums streams" $
+      stake 3 (nats 1 + nats 2) `shouldBe` [3, 5, 7]
+    it "multiplies streams" $
+      stake 3 (nats 2 * nats 2) `shouldBe` [4, 9, 16]
+    it "substracts streams" $
+      stake 3 (nats 4 - nats 1) `shouldBe` [3, 3, 3]

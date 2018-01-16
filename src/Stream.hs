@@ -3,6 +3,16 @@ module Stream where
 data Stream a = a :& Stream a
   deriving (Show, Eq, Ord)
 
+instance Num a => Num (Stream a) where
+  (+) (a :& r1) (b :& r2) = (a + b) :& (r1 + r2)
+  (*) (a :& r1) (b :& r2) = (a * b) :& (r1 * r2)
+  (-) (a :& r1) (b :& r2) = (a - b) :& (r1 - r2)
+
+  abs = undefined
+  signum = undefined
+
+  fromInteger = undefined
+
 nats ::  Int -> Stream Int
 nats a = a :& nats (a + 1)
 
